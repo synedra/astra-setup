@@ -89,6 +89,7 @@ class astraClient {
 		setEnv("ASTRA_DB_ID", this.db.value );
 		setEnv("ASTRA_DB_REGION", this.db.region);
 		setEnv("ASTRA_DB_KEYSPACE", astra_keyspace );
+		setEnv("ASTRA_GRAPHQL_ENDPOINT", "https://" + this.db.value + "-" + this.db.region + ".apps.astra.datastax.com/api/graphql/" + astra_keyspace)
 
 		// Check for the keyspace
 		console.log(chalk.green('Checking for keyspace ' + astra_keyspace));
@@ -319,7 +320,7 @@ async function start() {
 			setEnv("ASTRA_DB_ID", client.db.value );
 			setEnv("ASTRA_DB_REGION", client.db.region);
 			setEnv("ASTRA_DB_KEYSPACE", argv_keyspace );
-			setEnv("ASTRA_GRAPHQL_ENDPOINT", "https://" + client.db.value + "-" + client.db.region + ".apps.astra.datastax.com/api/graphql/" + client.db.keyspace)
+			setEnv("ASTRA_GRAPHQL_ENDPOINT", "https://" + client.db.value + "-" + client.db.region + ".apps.astra.datastax.com/api/graphql/" + argv_keyspace)
 		}
 		return;
 	}
@@ -359,6 +360,7 @@ async function start() {
 			setEnv("ASTRA_DB_ID", client.db.value );
 			setEnv("ASTRA_DB_REGION", client.db.region);
 			setEnv("ASTRA_DB_KEYSPACE", answers.keyspace );
+			setEnv("ASTRA_GRAPHQL_ENDPOINT", "https://" + client.db.value + "-" + client.db.region + ".apps.astra.datastax.com/api/graphql/" + answers.keyspace)
 			break;
 		case 2:
 			await client.findDatabases();
@@ -420,6 +422,7 @@ async function start() {
 				await client.findDatabasebyName(client.db.title, true);
 			}
 			setEnv("ASTRA_DB_KEYSPACE", keyspace.keyspace );
+			setEnv("ASTRA_GRAPHQL_ENDPOINT", "https://" + client.db.value + "-" + client.db.region + ".apps.astra.datastax.com/api/graphql/" + keyspace.keyspace)
 
 			process.exit();
 			break;
